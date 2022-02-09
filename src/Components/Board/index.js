@@ -49,6 +49,10 @@ function Board() {
     setTurn(!turn);
   }
 
+  function handleResetClick() {
+    setGrid(gridArr);
+  }
+
   return (
     <Container maxWidth="md">
       <Grid container>
@@ -72,6 +76,7 @@ function Board() {
           </Grid>
         ))}
       </Grid>
+      <button onClick={handleResetClick}>Reset</button>
     </Container>
   );
 }
