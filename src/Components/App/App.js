@@ -4,7 +4,10 @@ import { Container } from "@mui/material";
 
 function App() {
   return (
-    <Container maxWidth="none">
+    <Container
+      maxWidth="none"
+      sx={{ height: "100vh", backgroundColor: "#28293E" }}
+    >
       <Board />
     </Container>
   );

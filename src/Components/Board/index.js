@@ -1,9 +1,10 @@
-import { Container, Grid } from "@mui/material";
+import { Button, Container, Grid, Typography } from "@mui/material";
 import React from "react";
 import Square from "../Square";
 import { useState, useEffect } from "react";
+import { Box } from "@mui/system";
 
-const gridArr = [`1`, `2`, `3`, "4", "5", "6", "7", "8", "9"];
+const gridArr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 function Board() {
   const [grid, setGrid] = useState(gridArr);
@@ -44,29 +45,36 @@ function Board() {
       setGrid([...grid.slice(0, square), "O", ...grid.slice(square + 1)]);
     }
     console.log(grid);
+    let box = document.getElementById(square);
+    box.style.color = "white";
 
     //check against bank of potential winning outcomes
     setTurn(!turn);
   }
 
   function handleResetClick() {
-    setGrid(gridArr);
+    // setGrid(gridArr);
+    window.location.reload();
   }
 
   return (
-    <Container maxWidth="md">
-      <Grid container>
+    <Container maxWidth="xs">
+      <Grid container sx={{ fontSize: "1rem" }}>
         {grid.map((item, index) => (
           <Grid
             item
             xs={4}
             sx={{
               display: "flex",
-              border: "1px solid black",
+              border: "1px solid white",
               justifyContent: "center",
+              padding: "1em",
+              color: "#28293E",
+              cursor: "pointer",
+              userSelect: "none",
             }}
             key={index}
-            id={item}
+            id={index}
           >
             <Square
               handleClick={() => handleClick(index)}
@@ -76,7 +84,30 @@ function Board() {
           </Grid>
         ))}
       </Grid>
-      <button onClick={handleResetClick}>Reset</button>
+      <Box
+        sx={{
+          width: "100%",
+          // backgroundColor: "white",
+          display: "flex",
+          // alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <Typography variant="subtitle1" color="#fff">
+          {turn ? "Player 1's move" : "Player 2's move"}
+        </Typography>
+        <Button
+          variant="contained"
+          onClick={handleResetClick}
+          sx={{
+            display: "flex",
+            backgroundColor: "#EF6D58",
+            alignSelf: "end",
+          }}
+        >
+          Reset
+        </Button>
+      </Box>
     </Container>
   );
 }
