@@ -1,17 +1,29 @@
 import { Container, Grid } from "@mui/material";
 import React from "react";
 import Square from "../Square";
+import { useState } from "react";
 
-const gridArr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const gridArr = ["-", "-", "-", "-", "-", "-", "-", "-", "-"];
 
 function Board() {
+  const [grid, setGrid] = useState(gridArr);
+  const [turn, setTurn] = useState(true);
+
   function handleClick(square) {
     console.log("Square", square);
+    if (turn) {
+      setGrid([...grid.slice(0, square), "X", ...grid.slice(square + 1)]);
+    } else {
+      setGrid([...grid.slice(0, square), "O", ...grid.slice(square + 1)]);
+    }
+
+    setTurn(!turn);
   }
+
   return (
     <Container maxWidth="md">
       <Grid container>
-        {gridArr.map((item, index) => (
+        {grid.map((item, index) => (
           <Grid
             item
             xs={4}
@@ -23,7 +35,11 @@ function Board() {
             key={index}
             id={item}
           >
-            <Square handleClick={() => handleClick(item)} />
+            <Square
+              handleClick={() => handleClick(index)}
+              // text={turn ? "X" : "O"}
+              text={item}
+            />
           </Grid>
         ))}
       </Grid>
