@@ -2,9 +2,9 @@ import { Typography } from "@mui/material";
 import React from "react";
 // import CropSquareIcon from "@mui/icons-material/CropSquare";
 
-function Square() {
+function Square({ handleClick }) {
   return (
-    <Typography variant="h1" align="center">
+    <Typography variant="h1" align="center" onClick={handleClick}>
       X
     </Typography>
   );
