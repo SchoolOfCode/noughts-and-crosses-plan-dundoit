@@ -30,6 +30,10 @@ function Board() {
     } else if (grid.includes()) {
       alert("DRAW");
     }
+    if (turnCount === 9) {
+      alert("Its a draw, please restart the game ");
+    }
+    setTurnCount(turnCount + 1);
   }, [grid]);
 
   function handleClick(square) {
