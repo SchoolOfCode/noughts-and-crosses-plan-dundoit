@@ -1,13 +1,36 @@
 import { Container, Grid } from "@mui/material";
 import React from "react";
 import Square from "../Square";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const gridArr = ["-", "-", "-", "-", "-", "-", "-", "-", "-"];
+const gridArr = [`1`, `2`, `3`, "4", "5", "6", "7", "8", "9"];
 
 function Board() {
   const [grid, setGrid] = useState(gridArr);
   const [turn, setTurn] = useState(true);
+  const [turnCount, setTurnCount] = useState(0);
+
+  useEffect(() => {
+    if (grid[0] === grid[1] && grid[0] === grid[2]) {
+      alert("someone won while turn was set to " + turn);
+    } else if (grid[3] === grid[4] && grid[3] === grid[5]) {
+      alert("someone won while turn was set to " + turn);
+    } else if (grid[6] === grid[7] && grid[6] === grid[8]) {
+      alert("someone won while turn was set to " + turn);
+    } else if (grid[0] === grid[3] && grid[0] === grid[6]) {
+      alert("someone won while turn was set to " + turn);
+    } else if (grid[1] === grid[4] && grid[1] === grid[7]) {
+      alert("someone won while turn was set to " + turn);
+    } else if (grid[2] === grid[5] && grid[2] === grid[8]) {
+      alert("someone won while turn was set to " + turn);
+    } else if (grid[6] === grid[4] && grid[6] === grid[2]) {
+      alert("someone won while turn was set to " + turn);
+    } else if (grid[0] === grid[4] && grid[0] === grid[8]) {
+      alert("someone won while turn was set to " + turn);
+    } else if (grid.includes()) {
+      alert("DRAW");
+    }
+  }, [grid]);
 
   function handleClick(square) {
     console.log("Square", square);
@@ -16,7 +39,9 @@ function Board() {
     } else {
       setGrid([...grid.slice(0, square), "O", ...grid.slice(square + 1)]);
     }
+    console.log(grid);
 
+    //check against bank of potential winning outcomes
     setTurn(!turn);
   }
 
