@@ -1,7 +1,13 @@
-import React from "react"
+import { Typography } from "@mui/material";
+import React from "react";
+// import CropSquareIcon from "@mui/icons-material/CropSquare";
 
 function Square() {
-  return <h1>hello im a square</h1>;
+  return (
+    <Typography variant="h1" align="center">
+      X
+    </Typography>
+  );
 }
 
 export default Square;

@@ -1,11 +1,12 @@
 import "./App.css";
 import Board from "../Board";
+import { Container } from "@mui/material";
 
 function App() {
   return (
-    <div className="App">
+    <Container maxWidth="none">
       <Board />
-    </div>
+    </Container>
   );
 }
 
